@@ -52,7 +52,7 @@ const mockData = {
                 type: "startup",
                 logo: "AS"
             },
-            image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpuqRLyfFsNNYWkqvCgqYUP0ok2NxxxMFW0kQsOkKFZRqyTA89IUakjHEz&s=10",
             badge: "Economia",
             featured: true,
             dateAdded: "2024-01-12",
@@ -71,7 +71,7 @@ const mockData = {
                 type: "cooperativa",
                 logo: "AP"
             },
-            image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEFb5wDi4pxNsQSCoYPawr1lfoGWdvQ8FXcJFZnGSV6xNuCpFAMmesOsI&s=10",
             badge: "Social",
             featured: false,
             dateAdded: "2024-01-08",
@@ -90,7 +90,7 @@ const mockData = {
                 type: "empresa",
                 logo: "GC"
             },
-            image: "https://images.unsplash.com/photo-1593941707882-a5bac6861d75?w=400&h=300&fit=crop",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmsOgBkMNMLeyMgAB8nuVEKgrzDDWWN5dPQ-2Fx4eskMxXYrNGZ7xFAyw&s=10",
             badge: "Premium",
             featured: true,
             dateAdded: "2024-01-14",
@@ -109,7 +109,7 @@ const mockData = {
                 type: "empresa",
                 logo: "VA"
             },
-            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP5UTj_cSiX6x-fq3FOK20mGWyB_4nx2D5nQ&s",
             badge: "Eficiência",
             featured: false,
             dateAdded: "2024-01-11",
@@ -185,7 +185,7 @@ const mockData = {
                 type: "cooperativa",
                 logo: "CS"
             },
-            image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRymm8QUdhSEPsIJ60r5DdB1NrMnz1vFtAYAu7okLmEJYG1R1JjxDXTlNs&s=10",
             badge: "Artesanal",
             featured: false,
             dateAdded: "2024-01-06",
@@ -204,7 +204,7 @@ const mockData = {
                 type: "empresa",
                 logo: "EB"
             },
-            image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+            image: "bike.jpg",
             badge: "Portátil",
             featured: true,
             dateAdded: "2024-01-16",
@@ -223,7 +223,7 @@ const mockData = {
                 type: "startup",
                 logo: "MS"
             },
-            image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=300&fit=crop",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoBGuNzoKt6M-ZDpvKj2rPEyq_37OqnzlCeXCgpMLyTZ1GMOrnSxhwxtE&s=10",
             badge: "Marítimo",
             featured: false,
             dateAdded: "2024-01-05",
