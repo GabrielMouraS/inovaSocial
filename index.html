@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InovaSocial - Marketplace de Tecnologia Sustentável</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Fixo -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <h1>Inova<span class="logo-accent">Social</span></h1>
+            </div>
+            
+            <!-- Barra de Pesquisa Central -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar soluções sustentáveis..." class="search-input">
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Navegação -->
+            <nav class="nav-icons">
+                <a href="#" class="nav-item active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item" data-page="messages">
+                    <i class="fas fa-comments"></i>
+                    <span>Mensagens</span>
+                    <span class="notification-badge">3</span>
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                </a>
+            </nav>
+            
+            <!-- Menu Mobile -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Container Principal -->
+    <div class="main-container">
+        <!-- Sidebar Esquerda -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <!-- Categorias -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-layer-group"></i>
+                        Categorias
+                    </h3>
+                    <ul class="category-list" id="categoryList">
+                        <li class="category-item active" data-category="todas">
+                            <i class="fas fa-th-large"></i>
+                            <span>Todas as Categorias</span>
+                        </li>
+                        <li class="category-item" data-category="energia-renovavel">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>Energia Renovável</span>
+                        </li>
+                        <li class="category-item" data-category="gestao-residuos">
+                            <i class="fas fa-recycle"></i>
+                            <span>Gestão de Resíduos</span>
+                        </li>
+                        <li class="category-item" data-category="agricultura-sustentavel">
+                            <i class="fas fa-seedling"></i>
+                            <span>Agricultura Sustentável</span>
+                        </li>
+                        <li class="category-item" data-category="purificacao-agua">
+                            <i class="fas fa-water"></i>
+                            <span>Purificação de Água</span>
+                        </li>
+                        <li class="category-item" data-category="mobilidade-verde">
+                            <i class="fas fa-leaf"></i>
+                            <span>Mobilidade Verde</span>
+                        </li>
+                        <li class="category-item" data-category="construcao-sustentavel">
+                            <i class="fas fa-building"></i>
+                            <span>Construção Sustentável</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Filtros -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-filter"></i>
+                        Filtros
+                    </h3>
+                    
+                    <!-- Filtro de Preço -->
+                    <div class="filter-group">
+                        <label class="filter-label">Faixa de Preço</label>
+                        <div class="price-filter">
+                            <select id="priceFilter" class="filter-select">
+                                <option value="">Qualquer preço</option>
+                                <option value="0-1000">Até R$ 1.000</option>
+                                <option value="1000-5000">R$ 1.000 - R$ 5.000</option>
+                                <option value="5000-10000">R$ 5.000 - R$ 10.000</option>
+                                <option value="10000-50000">R$ 10.000 - R$ 50.000</option>
+                                <option value="50000+">Acima de R$ 50.000</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Filtro de Localização -->
+                    <div class="filter-group">
+                        <label class="filter-label">Localização</label>
+                        <select id="locationFilter" class="filter-select">
+                            <option value="">Todas as regiões</option>
+                            <option value="sp">São Paulo</option>
+                            <option value="rj">Rio de Janeiro</option>
+                            <option value="mg">Minas Gerais</option>
+                            <option value="rs">Rio Grande do Sul</option>
+                            <option value="pr">Paraná</option>
+                            <option value="sc">Santa Catarina</option>
+                            <option value="outros">Outros Estados</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro de Tipo de Empresa -->
+                    <div class="filter-group">
+                        <label class="filter-label">Tipo de Empresa</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="startup" class="company-type-filter">
+                                <span class="checkmark"></span>
+                                Startup
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="empresa" class="company-type-filter">
+                                <span class="checkmark"></span>
+                                Empresa Estabelecida
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="cooperativa" class="company-type-filter">
+                                <span class="checkmark"></span>
+                                Cooperativa
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Botão Limpar Filtros -->
+                    <button class="clear-filters-btn" id="clearFiltersBtn">
+                        <i class="fas fa-times"></i>
+                        Limpar Filtros
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Cabeçalho da Seção -->
+            <div class="content-header">
+                <h2 class="content-title">Soluções em Destaque</h2>
+                <div class="content-actions">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="relevancia">Mais Relevantes</option>
+                        <option value="preco-menor">Menor Preço</option>
+                        <option value="preco-maior">Maior Preço</option>
+                        <option value="recente">Mais Recentes</option>
+                        <option value="popular">Mais Populares</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Indicador de Resultados -->
+            <div class="results-info">
+                <span id="resultsCount">Carregando...</span>
+                <div class="active-filters" id="activeFilters"></div>
+            </div>
+
+            <!-- Grid de Anúncios -->
+            <div class="ads-grid" id="adsGrid">
+                <!-- Os cards serão inseridos dinamicamente via JavaScript -->
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Carregando soluções...</span>
+            </div>
+
+            <!-- Mensagem de Nenhum Resultado -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>Nenhuma solução encontrada</h3>
+                <p>Tente ajustar os filtros ou buscar por outros termos.</p>
+                <button class="btn-primary" onclick="clearAllFilters()">Limpar Filtros</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>InovaSocial</h4>
+                    <p>Conectando tecnologia sustentável com quem mais precisa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Para Empresas</h4>
+                    <ul>
+                        <li><a href="#">Anunciar Solução</a></li>
+                        <li><a href="#">Planos e Preços</a></li>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Políticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Para Compradores</h4>
+                    <ul>
+                        <li><a href="#">Como Funciona</a></li>
+                        <li><a href="#">Segurança</a></li>
+                        <li><a href="#">Suporte</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contato@inovasocial.com</li>
+                        <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 InovaSocial. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Contato -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Entrar em Contato</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="contactName">Nome Completo</label>
+                        <input type="text" id="contactName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">E-mail</label>
+                        <input type="email" id="contactEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Telefone (opcional)</label>
+                        <input type="tel" id="contactPhone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Mensagem</label>
+                        <textarea id="contactMessage" name="message" rows="4" required placeholder="Descreva seu interesse na solução..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeContactModal()">Cancelar</button>
+                        <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="dados-mock.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

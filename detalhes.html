@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Solução - InovaSocial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para a página de detalhes */
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            margin-top: 60px;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--background-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+
+        .back-btn:hover {
+            color: #0097a7;
+            transform: translateX(-2px);
+        }
+
+        .breadcrumb {
+            color: var(--text-light);
+            font-size: var(--text-sm);
+        }
+
+        .detail-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .detail-main {
+            background-color: var(--background-white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .image-gallery {
+            position: relative;
+            height: 400px;
+            background-color: var(--hover-bg);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .image-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .image-nav:hover {
+            background-color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .image-nav.prev {
+            left: var(--spacing-md);
+        }
+
+        .image-nav.next {
+            right: var(--spacing-md);
+        }
+
+        .image-indicators {
+            position: absolute;
+            bottom: var(--spacing-md);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+
+        .indicator.active {
+            background-color: white;
+        }
+
+        .solution-badge {
+            position: absolute;
+            top: var(--spacing-md);
+            left: var(--spacing-md);
+            background-color: var(--accent-cyan);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        .solution-info {
+            padding: var(--spacing-2xl);
+        }
+
+        .solution-title {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .solution-price {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--success-green);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .solution-description {
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-xl);
+            font-size: var(--text-lg);
+        }
+
+        .solution-features {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .features-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background-color: var(--hover-bg);
+            border-radius: var(--radius-md);
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--accent-cyan);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-sm);
+        }
+
+        .detail-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+
+        .company-card {
+            background-color: var(--background-white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .company-logo-large {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-cyan);
+            color: white;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xl);
+            font-weight: 700;
+        }
+
+        .company-details h3 {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .company-type {
+            background-color: var(--hover-bg);
+            color: var(--text-dark);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .company-location {
+            color: var(--text-light);
+            font-size: var(--text-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .company-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-md);
+            background-color: var(--hover-bg);
+            border-radius: var(--radius-md);
+        }
+
+        .stat-number {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-light);
+            margin-top: var(--spacing-xs);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .btn-contact {
+            background-color: var(--accent-cyan);
+            color: white;
+            padding: var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-contact:hover {
+            background-color: #0097a7;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-quote {
+            background-color: transparent;
+            color: var(--accent-cyan);
+            padding: var(--spacing-lg);
+            border: 2px solid var(--accent-cyan);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-quote:hover {
+            background-color: var(--accent-cyan);
+            color: white;
+        }
+
+        .additional-info {
+            background-color: var(--background-white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-lg);
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-light);
+            border-bottom: 2px solid transparent;
+            transition: all var(--transition-fast);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .spec-item {
+            padding: var(--spacing-md);
+            background-color: var(--hover-bg);
+            border-radius: var(--radius-md);
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .spec-value {
+            color: var(--text-light);
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .detail-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-xl);
+            }
+
+            .detail-sidebar {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .detail-container {
+                padding: var(--spacing-md);
+            }
+
+            .detail-header {
+                padding: var(--spacing-md);
+            }
+
+            .solution-info {
+                padding: var(--spacing-lg);
+            }
+
+            .solution-title {
+                font-size: var(--text-2xl);
+            }
+
+            .company-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (mesmo da página principal) -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>Inova<span class="logo-accent">Social</span></h1>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Buscar soluções sustentáveis..." class="search-input">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <nav class="nav-icons">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Mensagens</span>
+                    <span class="notification-badge">3</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                </a>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Container de Detalhes -->
+    <div class="detail-container">
+        <!-- Cabeçalho com Navegação -->
+        <div class="detail-header">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Voltar ao Marketplace
+            </a>
+            <div class="breadcrumb">
+                <span>Home</span> / <span>Energia Renovável</span> / <span id="breadcrumbTitle">Carregando...</span>
+            </div>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div class="detail-content">
+            <!-- Informações Principais -->
+            <div class="detail-main">
+                <!-- Galeria de Imagens -->
+                <div class="image-gallery">
+                    <div class="main-image" id="mainImage"></div>
+                    <div class="solution-badge" id="solutionBadge">Carregando...</div>
+                    
+                    <button class="image-nav prev" onclick="previousImage()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="image-nav next" onclick="nextImage()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <div class="image-indicators" id="imageIndicators">
+                        <!-- Indicadores serão inseridos dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Informações da Solução -->
+                <div class="solution-info">
+                    <h1 class="solution-title" id="solutionTitle">Carregando...</h1>
+                    <div class="solution-price" id="solutionPrice">Carregando...</div>
+                    <div class="solution-description" id="solutionDescription">Carregando...</div>
+
+                    <!-- Características -->
+                    <div class="solution-features">
+                        <h3 class="features-title">Principais Características</h3>
+                        <ul class="features-list" id="featuresList">
+                            <!-- Características serão inseridas dinamicamente -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="detail-sidebar">
+                <!-- Card da Empresa -->
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="company-logo-large" id="companyLogoLarge">ST</div>
+                        <div class="company-details">
+                            <h3 id="companyName">Carregando...</h3>
+                            <div class="company-type" id="companyType">Empresa</div>
+                            <div class="company-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="companyLocation">Carregando...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="companyRating">4.8</div>
+                            <div class="stat-label">Avaliação</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="companyViews">1.2k</div>
+                            <div class="stat-label">Visualizações</div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-contact" onclick="openContactModal()">
+                            <i class="fas fa-comments"></i>
+                            Entrar em Contato
+                        </button>
+                        <button class="btn-quote" onclick="requestQuote()">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            Solicitar Orçamento
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Informações Adicionais -->
+                <div class="additional-info">
+                    <div class="info-tabs">
+                        <button class="tab-btn active" onclick="showTab('specs')">Especificações</button>
+                        <button class="tab-btn" onclick="showTab('delivery')">Entrega</button>
+                        <button class="tab-btn" onclick="showTab('warranty')">Garantia</button>
+                    </div>
+
+                    <div class="tab-content active" id="specs">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <div class="spec-label">Categoria</div>
+                                <div class="spec-value" id="specCategory">Energia Renovável</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Disponibilidade</div>
+                                <div class="spec-value">Em estoque</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Instalação</div>
+                                <div class="spec-value">Incluída</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Suporte</div>
+                                <div class="spec-value">24/7</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="delivery">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <div class="spec-label">Prazo de Entrega</div>
+                                <div class="spec-value">15-30 dias úteis</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Frete</div>
+                                <div class="spec-value">Grátis para SP</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Instalação</div>
+                                <div class="spec-value">Agendada</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Área de Cobertura</div>
+                                <div class="spec-value">Todo o Brasil</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="warranty">
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <div class="spec-label">Garantia do Produto</div>
+                                <div class="spec-value">5 anos</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Garantia de Performance</div>
+                                <div class="spec-value">25 anos</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Suporte Técnico</div>
+                                <div class="spec-value">Vitalício</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Manutenção</div>
+                                <div class="spec-value">Anual gratuita</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (mesmo da página principal) -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>InovaSocial</h4>
+                    <p>Conectando tecnologia sustentável com quem mais precisa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Para Empresas</h4>
+                    <ul>
+                        <li><a href="#">Anunciar Solução</a></li>
+                        <li><a href="#">Planos e Preços</a></li>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Políticas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Para Compradores</h4>
+                    <ul>
+                        <li><a href="#">Como Funciona</a></li>
+                        <li><a href="#">Segurança</a></li>
+                        <li><a href="#">Suporte</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contato@inovasocial.com</li>
+                        <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 InovaSocial. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Contato (mesmo da página principal) -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Entrar em Contato</h3>
+                <button class="modal-close" onclick="closeContactModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="contactName">Nome Completo</label>
+                        <input type="text" id="contactName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">E-mail</label>
+                        <input type="email" id="contactEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Telefone (opcional)</label>
+                        <input type="tel" id="contactPhone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Mensagem</label>
+                        <textarea id="contactMessage" name="message" rows="4" required placeholder="Descreva seu interesse na solução..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeContactModal()">Cancelar</button>
+                        <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="dados-mock.js"></script>
+    <script src="detalhes.js"></script>
+</body>
+</html>
+
